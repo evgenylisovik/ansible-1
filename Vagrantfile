@@ -33,12 +33,6 @@ Vagrant.configure("2") do |config|
         box.vm.network "public_network", boxconfig[:public]
       end
 
-      #box.vm.provision "shell", inline: <<-SHELL
-      #  mkdir -p ~root/.ssh
-      #  cp ~vagrant/.ssh/auth* ~root/.ssh
-        #sudo sed -i 's/\#PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-        #systemctl restart sshd
-      #SHELL
       box.vm.provision "ansible" do |ansible|
       ansible.playbook = "nginx.yml"
       end
